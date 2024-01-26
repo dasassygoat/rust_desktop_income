@@ -44,6 +44,13 @@ slint::slint! {
         width: open_curtain ? 0px : (parent.width / 2);
         height: parent.height;
         animate width { duration: 250ms; easing: ease-in; }
+
+
+
+
+
+
+
         animate x { duration: 250ms; easing: ease-in; }
     }
 
@@ -60,7 +67,7 @@ export component MainWindow inherits Window {
         height: 326px;
 
         in property <[TitleData]> memory_tiles:[
-{ image: @image-url("icons/at.png") },
+               { image: @image-url("icons/at.png") },
         { image: @image-url("icons/balance-scale.png") },
         { image: @image-url("icons/bicycle.png") },
         { image: @image-url("icons/bus.png") },
