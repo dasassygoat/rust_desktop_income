@@ -6,3 +6,5 @@ Original idea: https://www.youtube.com/watch?v=7aFgeUG9TK4
 
 Sources:
 https://github.com/kizeevov/slint-idea-plugin
+
+Clippy
