@@ -1,9 +1,36 @@
 fn main() {
-    MainWindow::new().unwrap().run().unwrap();
+    /// Initializes the main window, fetches tile data from it, duplicates and
+    /// shuffles the tiles randomly, then assigns the shuffled tiles back to the
+    /// main window model before running the main window.
+    use slint::Model;
+
+    let main_window = MainWindow::new().unwrap();
+
+    // Fetch the tiles from the model
+    let mut tiles: Vec<TiteData> = main_window.get_memory_tiles().iter().collect();
+
+    // Duplicate them to ensure that we have pairs
+    tiles.extend(tiles.clone());
+
+    // Randomly mix the tiles
+    use rand::seq::SliceRandom;
+    let mut rng = rand::thread_rng();
+    tiles.shuffle(&mut rng);
+
+    // Assign the shuffled Vec to the model property
+    let tiles_model = std::rc::Rc::new(slint::VecModel::from(tiles));
+    main_window.set_memory_tiles(tiles_model.into());
+
+    main_window.run().unwrap();
 }
+
 
 slint::slint! {
 
+    /// TitleData stores the data for each title card in the memory
+    /// matching game. It contains the image to display, whether the
+    /// image is currently visible, and whether the card has been
+    /// solved (matched to its pair).
     struct TitleData{
         image: image,
         image_visible: bool,
@@ -44,13 +71,6 @@ slint::slint! {
         width: open_curtain ? 0px : (parent.width / 2);
         height: parent.height;
         animate width { duration: 250ms; easing: ease-in; }
-
-
-
-
-
-
-
         animate x { duration: 250ms; easing: ease-in; }
     }
 
@@ -67,7 +87,7 @@ export component MainWindow inherits Window {
         height: 326px;
 
         in property <[TitleData]> memory_tiles:[
-               { image: @image-url("icons/at.png") },
+        { image: @image-url("icons/at.png") },
         { image: @image-url("icons/balance-scale.png") },
         { image: @image-url("icons/bicycle.png") },
         { image: @image-url("icons/bus.png") },
