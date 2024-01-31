@@ -1,0 +1,14 @@
+{
+  "name": "rust_desktop_income",
+  "version": "0.1.0",
+  "files": [
+    "rust_desktop_income_bg.wasm",
+    "rust_desktop_income.js",
+    "rust_desktop_income.d.ts"
+  ],
+  "module": "rust_desktop_income.js",
+  "types": "rust_desktop_income.d.ts",
+  "sideEffects": [
+    "./snippets/*"
+  ]
+}
