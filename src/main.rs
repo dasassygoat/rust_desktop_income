@@ -1,5 +1,4 @@
-#[cfg_attr(target_arch = "wasm32",
-wasm_bindgen::prelude::wasm_bindgen(start))]
+#[cfg_attr(target_arch = "wasm32", wasm_bindgen::prelude::wasm_bindgen(start))]
 pub fn main() {
     // Initializes the main window, fetches tile data from it, duplicates and
     // shuffles the tiles randomly, then assigns the shuffled tiles back to the
@@ -57,6 +56,7 @@ pub fn main() {
     main_window.run().unwrap();
 }
 
+//
 slint::slint! {
 
     // TitleData stores the data for each title card in the memory
